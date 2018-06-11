@@ -1,9 +1,11 @@
 package edu.calpoly.csc431.dao;
 
+import edu.calpoly.csc431.model.EventRequest;
+
 /**
  * @author Eric Jiang
  */
-public interface EventRequest {
+public interface EventRequestDAO {
     EventRequest createRequest(EventRequest request);
 
     EventRequest updateRequest(EventRequest request);

@@ -418,7 +418,7 @@ paths:
           format: int64
       responses:
         '200':
-          description: User has added to the event successfully.
+          description: UserDAO has added to the event successfully.
         default:
           description: unexpected error.
           schema:
@@ -441,7 +441,7 @@ paths:
           format: int64
       responses:
         '200':
-          description: User has deleted from the event successfully.
+          description: UserDAO has deleted from the event successfully.
         default:
           description: unexpected error.
           schema:

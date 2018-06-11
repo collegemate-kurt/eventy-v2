@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Eric Jiang
  */
 @Entity
-@Table(name = "UserXPhoto")
+@Table(name = "UserXPhotoDAO")
 public class UserXPhoto implements Serializable  {
 
     private static final long serialVersionUID = 3357866917654998273L;

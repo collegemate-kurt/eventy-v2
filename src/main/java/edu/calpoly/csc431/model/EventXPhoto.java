@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Eric Jiang
  */
 @Entity
-@Table(name = "EventXPhoto")
+@Table(name = "EventXPhotoDAO")
 public class EventXPhoto implements Serializable {
     private static final long serialVersionUID = -9043848662765656483L;
 

@@ -12,9 +12,9 @@ public interface EventDAO {
 
     Event updateEvent(Event event);
 
-    Event getEvent(Event event);
+    Event getEvent(String eventId);
 
-    Event deleteEvent(Event event);
+    Event deleteEvent(String eventId);
 
     List<Event> getEvents();
 }

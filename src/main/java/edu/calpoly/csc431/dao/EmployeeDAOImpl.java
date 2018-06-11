@@ -15,7 +15,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	public void addEmployee(Employee employee) {
 		sessionFactory.getCurrentSession().saveOrUpdate(employee);
-
 	}
 
 	@SuppressWarnings("unchecked")

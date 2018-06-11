@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Eric Jiang
  */
 @Entity
-@Table(name = "UserXUser")
+@Table(name = "UserXUserDAO")
 public class UserXUser implements Serializable {
     private static final long serialVersionUID = -2191213659394281840L;
 

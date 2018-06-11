@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Eric Jiang
  */
 @Entity
-@Table(name = "UserXEvent")
+@Table(name = "UserXEventDAO")
 public class UserXEvent implements Serializable {
     private static final long serialVersionUID = -8209429971406939627L;
 
