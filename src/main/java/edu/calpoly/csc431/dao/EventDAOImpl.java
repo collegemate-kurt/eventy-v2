@@ -29,12 +29,12 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public Event getEvent(String eventId) {
+    public Event getEvent(Integer eventId) {
         return (Event) sessionFactory.getCurrentSession().get(Event.class, eventId);
     }
 
     @Override
-    public Event deleteEvent(String eventId) {
+    public Event deleteEvent(Integer eventId) {
         Event event = (Event) sessionFactory.getCurrentSession().get(Event.class, eventId);
         if (event != null) {
             sessionFactory.getCurrentSession().delete(event);

@@ -1,16 +1,14 @@
 package edu.calpoly.csc431.dao;
 
-import edu.calpoly.csc431.model.EventXPhoto;
+import java.util.List;
 
 /**
  * @author Eric Jiang
  */
 public interface EventXPhotoDAO {
-    EventXPhoto createEventXPhoto(EventXPhoto eventXPhoto);
+    List<String> getPhotos(Integer eventId);
 
-    EventXPhoto updateEventXPhoto(EventXPhoto eventXPhoto);
+    void addPhoto(Integer eventId, String photoUrl);
 
-    EventXPhoto getEventXPhoto(String id);
-
-    EventXPhoto deleteEventXPhoto(String id);
+    void deletePhoto(Integer eventId, String photoUrl);
 }

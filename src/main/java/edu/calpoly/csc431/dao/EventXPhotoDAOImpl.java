@@ -1,9 +1,12 @@
 package edu.calpoly.csc431.dao;
 
 import edu.calpoly.csc431.model.EventXPhoto;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author Eric Jiang
@@ -14,28 +17,30 @@ public class EventXPhotoDAOImpl implements EventXPhotoDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public EventXPhoto createEventXPhoto(EventXPhoto eventXPhoto) {
+    @SuppressWarnings("unchecked")
+    public List<String> getPhotos(Integer eventId) {
+        String sql = "select photoUrl\n" +
+                "from EventXPhoto\n" +
+                "where eventId = :eventId";
+        Query query = sessionFactory.getCurrentSession().createQuery(sql);
+        query.setParameter("eventId", eventId);
+        return query.list();
+    }
+
+    @Override
+    public void addPhoto(Integer eventId, String photoUrl) {
+        EventXPhoto eventXPhoto = new EventXPhoto();
+        eventXPhoto.setEventId(eventId);
+        eventXPhoto.setPhotoUrl(photoUrl);
         sessionFactory.getCurrentSession().saveOrUpdate(eventXPhoto);
-        return eventXPhoto;
     }
 
     @Override
-    public EventXPhoto updateEventXPhoto(EventXPhoto eventXPhoto) {
-        sessionFactory.getCurrentSession().update(eventXPhoto);
-        return eventXPhoto;
+    public void deletePhoto(Integer eventId, String photoUrl) {
+        EventXPhoto eventXPhoto = new EventXPhoto();
+        eventXPhoto.setEventId(eventId);
+        eventXPhoto.setPhotoUrl(photoUrl);
+        sessionFactory.getCurrentSession().delete(eventXPhoto);
     }
 
-    @Override
-    public EventXPhoto getEventXPhoto(String id) {
-        return (EventXPhoto) sessionFactory.getCurrentSession().get(EventXPhoto.class, id);
-    }
-
-    @Override
-    public EventXPhoto deleteEventXPhoto(String id) {
-        EventXPhoto xx = (EventXPhoto) sessionFactory.getCurrentSession().get(EventXPhoto.class, id);
-        if (xx != null) {
-            sessionFactory.getCurrentSession().delete(xx);
-        }
-        return xx;
-    }
 }

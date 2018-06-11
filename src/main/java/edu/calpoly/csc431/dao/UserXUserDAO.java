@@ -1,16 +1,18 @@
 package edu.calpoly.csc431.dao;
 
-import edu.calpoly.csc431.model.UserXUser;
+import edu.calpoly.csc431.model.User;
+
+import java.util.List;
 
 /**
  * @author Eric Jiang
  */
 public interface UserXUserDAO {
-    UserXUser createUserXUser(UserXUser userXUser);
+    void addFollower(Integer userId, Integer followerId);
 
-    UserXUser updateUserXUser(UserXUser userXUser);
+    void deleteFollower(Integer userId, Integer followerId);
 
-    UserXUser getUserXUser(String id);
+    List<User> getFollowers(Integer userId);
 
-    UserXUser deleteUserXUser(String id);
+    List<User> getFollowings(Integer userId);
 }

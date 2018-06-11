@@ -1,18 +1,16 @@
 package edu.calpoly.csc431.service;
 
-import java.util.List;
-
 import edu.calpoly.csc431.dao.EmployeeDAO;
+import edu.calpoly.csc431.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.calpoly.csc431.model.Employee;
+import java.util.List;
 
 @Service
 @Transactional
 public class EmployeeServiceImpl implements EmployeeService {
-
 	@Autowired
 	private EmployeeDAO employeeDAO;
 

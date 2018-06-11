@@ -294,10 +294,23 @@ paths:
           description: unexpected error.
           schema:
             $ref: '#/definitions/errorModel'
+  /users:
+    get:
+      summary: Fetch all users saved from the system.
+      operationId: getAllUsers
+      responses:
+        '200':
+          description: The users has fetched successfully.
+          schema:
+            $ref: '#/definitions/user'
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
   /event:
     post:
       summary: Adds a new event to the system.
-      operationId: addEvent
+      operationId: add
       produces:
         - application/json
       parameters:
@@ -362,7 +375,7 @@ paths:
             $ref: '#/definitions/errorModel'
     delete:
       summary: Deletes the event of the specified id.
-      operationId: deleteEvent
+      operationId: delete
       parameters:
         - name: eventId
           in: path

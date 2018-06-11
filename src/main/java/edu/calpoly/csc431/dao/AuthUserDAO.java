@@ -8,7 +8,7 @@ import edu.calpoly.csc431.model.AuthUser;
 public interface AuthUserDAO {
     AuthUser createAuthUser(AuthUser authUser);
 
-    AuthUser getAuthUser(String userId);
+    AuthUser getAuthUser(String email);
 
     AuthUser updateAuthUser(AuthUser authUser);
 

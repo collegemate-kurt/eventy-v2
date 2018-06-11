@@ -1,16 +1,14 @@
 package edu.calpoly.csc431.dao;
 
-import edu.calpoly.csc431.model.UserXPhoto;
+import java.util.List;
 
 /**
  * @author Eric Jiang
  */
 public interface UserXPhotoDAO {
-    UserXPhoto createUserXPhoto(UserXPhoto userXPhoto);
+    void addPhoto(Integer userId, String photoUrl);
 
-    UserXPhoto updateUserXPhoto(UserXPhoto userXPhoto);
+    void deletePhoto(Integer userId, String photoUrl);
 
-    UserXPhoto getUserXPhoto(String id);
-
-    UserXPhoto deleteUserXPhoto(String id);
+    List<String> getPhotos(Integer userId);
 }

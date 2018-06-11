@@ -1,9 +1,14 @@
 package edu.calpoly.csc431.dao;
 
+import edu.calpoly.csc431.model.Event;
+import edu.calpoly.csc431.model.User;
 import edu.calpoly.csc431.model.UserXEvent;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author Eric Jiang
@@ -14,29 +19,49 @@ public class UserXEventDAOImpl implements UserXEventDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public UserXEvent createUserXEvent(UserXEvent userXEvent) {
+    @SuppressWarnings("unchecked")
+    public List<Event> getEvents(Integer userId) {
+        String sql = "select *\n" +
+                "from Event\n" +
+                "where id in (\n" +
+                "  select eventId\n" +
+                "  from UserXEvent\n" +
+                "  where userId = :userId\n" +
+                ")";
+        Query query = sessionFactory.getCurrentSession().createQuery(sql);
+        query.setParameter("userId", userId);
+        return query.list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<User> getMembers(Integer eventId) {
+        String sql = "select *\n" +
+                "from User\n" +
+                "where id in (\n" +
+                "  select userId\n" +
+                "  from UserXEvent\n" +
+                "  where eventId = :eventId\n" +
+                ")";
+        Query query = sessionFactory.getCurrentSession().createQuery(sql);
+        query.setParameter("eventId", eventId);
+        return query.list();
+    }
+
+    @Override
+    public void add(Integer userId, Integer eventId) {
+        UserXEvent userXEvent = new UserXEvent();
+        userXEvent.setUserId(userId);
+        userXEvent.setEventId(eventId);
         sessionFactory.getCurrentSession().saveOrUpdate(userXEvent);
-        return userXEvent;
     }
 
     @Override
-    public UserXEvent updateUserXEvent(UserXEvent userXEvent) {
-        sessionFactory.getCurrentSession().update(userXEvent);
-        return userXEvent;
-    }
-
-    @Override
-    public UserXEvent getUserXEvent(String id) {
-        return (UserXEvent) sessionFactory.getCurrentSession().get(UserXEvent.class, id);
-    }
-
-    @Override
-    public UserXEvent deleteUserEvent(String id) {
-        UserXEvent event = (UserXEvent) sessionFactory.getCurrentSession().get(UserXEvent.class, id);
-        if (event != null) {
-            sessionFactory.getCurrentSession().delete(event);
-        }
-        return event;
+    public void delete(Integer userId, Integer eventId) {
+        UserXEvent userXEvent = new UserXEvent();
+        userXEvent.setUserId(userId);
+        userXEvent.setEventId(eventId);
+        sessionFactory.getCurrentSession().delete(userXEvent);
     }
 
 }

@@ -21,11 +21,12 @@ public class UserXUser implements Serializable {
     @Column
     private int followerId;
 
+
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -33,7 +34,7 @@ public class UserXUser implements Serializable {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -41,7 +42,7 @@ public class UserXUser implements Serializable {
         return followerId;
     }
 
-    public void setFollowerId(int followerId) {
+    public void setFollowerId(Integer followerId) {
         this.followerId = followerId;
     }
 

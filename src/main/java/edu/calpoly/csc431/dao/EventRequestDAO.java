@@ -2,15 +2,19 @@ package edu.calpoly.csc431.dao;
 
 import edu.calpoly.csc431.model.EventRequest;
 
+import java.util.List;
+
 /**
  * @author Eric Jiang
  */
 public interface EventRequestDAO {
-    EventRequest createRequest(EventRequest request);
+    EventRequest addRequest(EventRequest request);
+
+    EventRequest getRequest(Integer requestId);
 
     EventRequest updateRequest(EventRequest request);
 
-    EventRequest getRequest(String requestId);
+    EventRequest deleteRequest(Integer requestId);
 
-    EventRequest deleteRequest(String requestId);
+    List<EventRequest> getRequests(Integer eventId);
 }

@@ -5,6 +5,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author Eric Jiang
  */
@@ -27,17 +29,23 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User getUser(String userId) {
+    public User getUser(Integer userId) {
         return (User) sessionFactory.getCurrentSession().get(User.class, userId);
     }
 
     @Override
-    public User deleteUser(String userId) {
+    public User deleteUser(Integer userId) {
         User user = (User) sessionFactory.getCurrentSession().load(User.class, userId);
         if (user != null) {
             this.sessionFactory.getCurrentSession().delete(user);
         }
         return user;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<User> getAllUsers() {
+        return sessionFactory.getCurrentSession().createQuery("from User").list();
     }
 
 }

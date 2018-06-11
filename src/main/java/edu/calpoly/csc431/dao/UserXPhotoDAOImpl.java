@@ -1,9 +1,13 @@
 package edu.calpoly.csc431.dao;
 
 import edu.calpoly.csc431.model.UserXPhoto;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
 
 /**
  * @author Eric Jiang
@@ -14,29 +18,30 @@ public class UserXPhotoDAOImpl implements UserXPhotoDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public UserXPhoto createUserXPhoto(UserXPhoto userXPhoto) {
+    public void addPhoto(Integer userId, String photoUrl) {
+        UserXPhoto userXPhoto = new UserXPhoto();
+        userXPhoto.setUserId(userId);
+        userXPhoto.setPhotoUrl(photoUrl);
         sessionFactory.getCurrentSession().saveOrUpdate(userXPhoto);
-        return userXPhoto;
     }
 
     @Override
-    public UserXPhoto updateUserXPhoto(UserXPhoto userXPhoto) {
-        sessionFactory.getCurrentSession().update(userXPhoto);
-        return userXPhoto;
+    public void deletePhoto(Integer userId, String photoUrl) {
+        UserXPhoto userXPhoto = new UserXPhoto();
+        userXPhoto.setUserId(userId);
+        userXPhoto.setPhotoUrl(photoUrl);
+        sessionFactory.getCurrentSession().delete(userXPhoto);
     }
 
     @Override
-    public UserXPhoto getUserXPhoto(String id) {
-        return (UserXPhoto) sessionFactory.getCurrentSession().get(UserXPhoto.class, id);
-    }
-
-    @Override
-    public UserXPhoto deleteUserXPhoto(String id) {
-        UserXPhoto photo = (UserXPhoto) sessionFactory.getCurrentSession().get(UserXPhoto.class, id);
-        if (photo != null) {
-            sessionFactory.getCurrentSession().delete(photo);
-        }
-        return photo;
+    @SuppressWarnings("unchecked")
+    public List<String> getPhotos(Integer userId) {
+        String sql = "select photoUrl\n" +
+                "from UserXPhoto\n" +
+                "where userId = :userId";
+        Query query = sessionFactory.getCurrentSession().createQuery(sql);
+        query.setParameter("userId", userId);
+        return query.list();
     }
 
 }

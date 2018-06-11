@@ -21,8 +21,8 @@ public class AuthUserDAOImpl implements AuthUserDAO {
     }
 
     @Override
-    public AuthUser getAuthUser(String userId) {
-        return (AuthUser) sessionFactory.getCurrentSession().get(AuthUser.class, userId);
+    public AuthUser getAuthUser(String email) {
+        return (AuthUser) sessionFactory.getCurrentSession().get(AuthUser.class, email);
     }
 
     @Override
