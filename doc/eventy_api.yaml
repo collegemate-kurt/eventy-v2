@@ -21,7 +21,7 @@ produces:
 paths:
   /user:
     post:
-      description: Adds a new user to the system.
+      summary: Adds a new user to the system.
       operationId: addUser
       produces:
         - application/json
@@ -41,7 +41,7 @@ paths:
           schema:
             $ref: '#/definitions/errorModel'
     put:
-      description: Update an existing user in the system.
+      summary: Update an existing user in the system.
       operationId: updateUser
       produces:
         - application/json
@@ -63,7 +63,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /user/{id}:
     get:
-      description: Returns the user with the specified id.
+      summary: Returns the user with the specified id.
       operationId: getUser
       produces:
         - application/json
@@ -84,7 +84,7 @@ paths:
           schema:
             $ref: '#/definitions/errorModel'
     delete:
-      description: Deletes the user from the system.
+      summary: Deletes the user from the system.
       operationId: deleteUser
       produces:
         - application/json
@@ -104,7 +104,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /user/{userId}/{followerId}:
     post:
-      description: Adds the follower wih the followerId to this user with the userId.
+      summary: Adds the follower wih the followerId to this user with the userId.
       operationId: addFollower
       produces:
         - application/json
@@ -129,7 +129,7 @@ paths:
           schema:
             $ref: '#/definitions/errorModel'
     delete:
-      description: Deletes the follower from this user.
+      summary: Deletes the follower from this user.
       operationId: deleteFollower
       produces:
         - application/json
@@ -155,7 +155,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /user/{userId}/followers:
     get:
-      description: Returns the followers of this user.
+      summary: Returns the followers of this user.
       operationId: getFollowers
       produces:
         - application/json
@@ -179,7 +179,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /user/{userId}/following:
     get:
-      description: Returns a list of users that this user is following.
+      summary: Returns a list of users that this user is following.
       operationId: getFollowings
       produces:
         - application/json
@@ -203,7 +203,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /user/{userId}/events:
     get:
-      description: Returns a list of events that this user is created.
+      summary: Returns a list of events that this user is created.
       operationId: getEventsByUser
       produces:
         - application/json
@@ -227,7 +227,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /user/{userId}/photos:
     get:
-      description: Returns a list of photos (url) of this user.
+      summary: Returns a list of photos (url) of this user.
       operationId: getPhotosByUser
       produces:
         - application/json
@@ -251,7 +251,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /user/{userId}/photos/{photoUrl}:
     post:
-      description: Adds a new photo to this user.
+      summary: Adds a new photo to this user.
       operationId: addUserPhoto
       parameters:
         - name: userId
@@ -273,7 +273,7 @@ paths:
           schema:
             $ref: '#/definitions/errorModel'
     delete:
-      description: Deletes the photo from the user.
+      summary: Deletes the photo from the user.
       operationId: deleteUserPhoto
       parameters:
         - name: userId
@@ -296,7 +296,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /event:
     post:
-      description: Adds a new event to the system.
+      summary: Adds a new event to the system.
       operationId: addEvent
       produces:
         - application/json
@@ -340,7 +340,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /event/{eventId}:
     get:
-      description: Returns the event of the specified id.
+      summary: Returns the event of the specified id.
       operationId: getEvent
       produces:
         - application/json
@@ -361,7 +361,7 @@ paths:
           schema:
             $ref: '#/definitions/errorModel'
     delete:
-      description: Deletes the event of the specified id.
+      summary: Deletes the event of the specified id.
       operationId: deleteEvent
       parameters:
         - name: eventId
@@ -379,7 +379,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /event/{eventId}/members:
     get:
-      description: Returns a list of members in the event.
+      summary: Returns a list of members in the event.
       operationId: getEventMembers
       parameters:
         - name: eventId
@@ -401,7 +401,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /event/{eventId}/members/{userId}:
     post:
-      description: Adds a new member to the event.
+      summary: Adds a new member to the event.
       operationId: addUserToEvent
       parameters:
         - name: eventId
@@ -424,7 +424,7 @@ paths:
           schema:
             $ref: '#/definitions/errorModel'
     delete:
-      description: Deletes a member from the event.
+      summary: Deletes a member from the event.
       operationId: deleteUserFromEvent
       parameters:
         - name: eventId
@@ -448,7 +448,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /event/{eventId}/photos:
     get:
-      description: Returns a list event photos.
+      summary: Returns a list event photos.
       operationId: getEventPhotos
       produces:
         - application/json
@@ -472,7 +472,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /event/{eventId}/photos/{photoUrl}:
     post:
-      description: Adds a new photo to the event.
+      summary: Adds a new photo to the event.
       operationId: addEventPhoto
       parameters:
         - name: eventId
@@ -494,7 +494,7 @@ paths:
           schema:
             $ref: '#/definitions/errorModel'
     delete:
-      description: Deletes a photo from the event.
+      summary: Deletes a photo from the event.
       operationId: deleteEventPhoto
       parameters:
         - name: eventId
@@ -517,7 +517,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /event/{eventId}/requests:
     get:
-      description: Returns a list of requests to this event.
+      summary: Returns a list of requests to this event.
       operationId: getEventRequests
       parameters:
         - name: eventId
@@ -538,7 +538,7 @@ paths:
           schema:
             $ref: '#/definitions/errorModel'
     post:
-      description: Adds a new request to the event.
+      summary: Adds a new request to the event.
       operationId: addEventRequest
       parameters:
         - name: eventId
@@ -565,7 +565,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /event/{eventId}/requests/{requestId}:
     put:
-      description: Updates an event reuqest.
+      summary: Updates an event reuqest.
       operationId: updateEventRequest
       parameters:
         - name: eventId
@@ -588,7 +588,7 @@ paths:
           schema:
             $ref: '#/definitions/errorModel'
     delete:
-      description: Deletes an event reuqest.
+      summary: Deletes an event reuqest.
       operationId: deleteEventRequest
       parameters:
         - name: eventId
@@ -612,7 +612,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /events:
     get:
-      description: Queries events based on the conditions.
+      summary: Queries events based on the conditions.
       operationId: queryEvents
       produces:
          - application/json
@@ -669,7 +669,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /auth/signup:
     post:
-      description: Sign up a new user.
+      summary: Sign up a new user.
       operationId: signUp
       produces:
         - application/json
@@ -692,7 +692,7 @@ paths:
             $ref: '#/definitions/errorModel'
   /auth/login:
     post:
-      description: Login.
+      summary: Login.
       operationId: login
       produces:
         - application/json
