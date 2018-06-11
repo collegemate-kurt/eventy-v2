@@ -1,0 +1,843 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Eventy
+  description: REST API specification for Eventy application.
+  contact:
+    name: Eric Jiang
+    email: zjiang02@calpoly.edu
+    url: http://eventy.com
+  license:
+    name: MIT
+    url: http://opensource.org/licenses/MIT
+host: eventy.com
+basePath: /api
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /user:
+    post:
+      description: Adds a new user to the system.
+      operationId: addUser
+      produces:
+        - application/json
+      parameters:
+        - name: user
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/user'
+      responses:
+        '200':
+          description: New user added successfully.
+          schema:
+            $ref: '#/definitions/user'
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+    put:
+      description: Update an existing user in the system.
+      operationId: updateUser
+      produces:
+        - application/json
+      parameters:
+        - name: user
+          in: body
+          description: The user to be updated.
+          required: true
+          schema:
+            $ref: '#/definitions/user'
+      responses:
+        '200':
+          description: Returns the updated user.
+          schema:
+            $ref: '#/definitions/user'
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /user/{id}:
+    get:
+      description: Returns the user with the specified id.
+      operationId: getUser
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: The id the user to fetch.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: The user fetched succesfully.
+          schema:
+            $ref: '#/definitions/user'
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      description: Deletes the user from the system.
+      operationId: deleteUser
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user to be deleted.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: The user deleted successfully.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /user/{userId}/{followerId}:
+    post:
+      description: Adds the follower wih the followerId to this user with the userId.
+      operationId: addFollower
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: The id of the user to be followed.
+          required: true
+          type: integer
+          format: int64
+        - name: followerId
+          in: path
+          description: The userId of the follower.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: The follower has added successfully.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      description: Deletes the follower from this user.
+      operationId: deleteFollower
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: The id of the user.
+          required: true
+          type: integer
+          format: int64
+        - name: followerId
+          in: path
+          description: The id of the follower.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: The follower has deleted successfully.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /user/{userId}/followers:
+    get:
+      description: Returns the followers of this user.
+      operationId: getFollowers
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: The id of the user whose followers to be fetched.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns the list of followers of this user.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user'
+        default:
+          description: unexpcted error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /user/{userId}/following:
+    get:
+      description: Returns a list of users that this user is following.
+      operationId: getFollowings
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: The id of the user whose following to be fetched.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: The list of users that this user is following.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user'
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /user/{userId}/events:
+    get:
+      description: Returns a list of events that this user is created.
+      operationId: getEventsByUser
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: The id of the user whose events to be fetched.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: The list of events created by this user.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/event'
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /user/{userId}/photos:
+    get:
+      description: Returns a list of photos (url) of this user.
+      operationId: getPhotosByUser
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: The id of the user whose photos to be fetched.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: The list of photos of this user.
+          schema:
+            type: array
+            items:
+              type: string
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /user/{userId}/photos/{photoUrl}:
+    post:
+      description: Adds a new photo to this user.
+      operationId: addUserPhoto
+      parameters:
+        - name: userId
+          in: path
+          description: The id of the user whose photo to be added.
+          required: true
+          type: integer
+          format: int64
+        - name: photoUrl
+          in: path
+          description: The url of the photo.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The photo has added successfully.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      description: Deletes the photo from the user.
+      operationId: deleteUserPhoto
+      parameters:
+        - name: userId
+          in: path
+          description: The id of the user whose photo to be deleted.
+          required: true
+          type: integer
+          format: int64
+        - name: photoUrl
+          in: path
+          description: The url of the photo.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The photo has deleted successfully.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /event:
+    post:
+      description: Adds a new event to the system.
+      operationId: addEvent
+      produces:
+        - application/json
+      parameters:
+        - name: event
+          in: body
+          description: The event to be added.
+          required: true
+          schema:
+            $ref: '#/definitions/event'
+      responses:
+        '200':
+          description: Returns the event id of the new event has added.
+          schema:
+            type: integer
+            format: int64
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+    put:
+      description: Updates the event in the system.
+      operationId: updateEvent
+      produces:
+        - application/json
+      parameters:
+        - name: event
+          in: body
+          description: The updated event.
+          required: true
+          schema:
+            $ref: '#/definitions/event'
+      responses:
+        '200':
+          description: Returns the updated event.
+          schema:
+            $ref: '#/definitions/event'
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /event/{eventId}:
+    get:
+      description: Returns the event of the specified id.
+      operationId: getEvent
+      produces:
+        - application/json
+      parameters:
+        - name: eventId
+          in: path
+          description: The id of the event to be fetched.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: The event has fetched.
+          schema:
+            $ref: '#/definitions/event'
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      description: Deletes the event of the specified id.
+      operationId: deleteEvent
+      parameters:
+        - name: eventId
+          in: path
+          description: The id of the event to be deleted.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: The event has deleted successfully.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /event/{eventId}/members:
+    get:
+      description: Returns a list of members in the event.
+      operationId: getEventMembers
+      parameters:
+        - name: eventId
+          in: path
+          description: The id of the event.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns a list of members in the event.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /event/{eventId}/members/{userId}:
+    post:
+      description: Adds a new member to the event.
+      operationId: addUserToEvent
+      parameters:
+        - name: eventId
+          in: path
+          description: The id of the event.
+          required: true
+          type: integer
+          format: int64
+        - name: userId
+          in: path
+          description: The id of the user.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: User has added to the event successfully.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      description: Deletes a member from the event.
+      operationId: deleteUserFromEvent
+      parameters:
+        - name: eventId
+          in: path
+          description: The id of the event.
+          required: true
+          type: integer
+          format: int64
+        - name: userId
+          in: path
+          description: The id of the user.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: User has deleted from the event successfully.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /event/{eventId}/photos:
+    get:
+      description: Returns a list event photos.
+      operationId: getEventPhotos
+      produces:
+        - application/json
+      parameters:
+        - name: eventId
+          in: path
+          description: The id of the event.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns the list of event photos.
+          schema:
+            type: array
+            items:
+              type: string
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /event/{eventId}/photos/{photoUrl}:
+    post:
+      description: Adds a new photo to the event.
+      operationId: addEventPhoto
+      parameters:
+        - name: eventId
+          in: path
+          description: The id of the event.
+          required: true
+          type: integer
+          format: int64
+        - name: photoUrl
+          in: path
+          description: The url of the photo.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Photo has added to the event successfully.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      description: Deletes a photo from the event.
+      operationId: deleteEventPhoto
+      parameters:
+        - name: eventId
+          in: path
+          description: The id of the event.
+          required: true
+          type: integer
+          format: int64
+        - name: photoUrl
+          in: path
+          description: The url of the photo.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Photo has deleted from the event successfully.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /event/{eventId}/requests:
+    get:
+      description: Returns a list of requests to this event.
+      operationId: getEventRequests
+      parameters:
+        - name: eventId
+          in: path
+          description: The id of the event.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns a list of requests to this event.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/eventRequest'
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+    post:
+      description: Adds a new request to the event.
+      operationId: addEventRequest
+      parameters:
+        - name: eventId
+          in: path
+          description: The id of the event.
+          required: true
+          type: integer
+          format: int64
+        - name: request
+          in: body
+          description: The request to be added.
+          required: true
+          schema:
+            $ref: '#/definitions/eventRequest'
+      responses:
+        '200':
+          description: Returns the id of the request added.
+          schema:
+            type: integer
+            format: int64
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /event/{eventId}/requests/{requestId}:
+    put:
+      description: Updates an event reuqest.
+      operationId: updateEventRequest
+      parameters:
+        - name: eventId
+          in: path
+          description: The id of the event.
+          required: true
+          type: integer
+          format: int64
+        - name: requestId
+          in: path
+          description: The id of the event request.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: The event request has updated.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      description: Deletes an event reuqest.
+      operationId: deleteEventRequest
+      parameters:
+        - name: eventId
+          in: path
+          description: The id of the event.
+          required: true
+          type: integer
+          format: int64
+        - name: requestId
+          in: path
+          description: The id of the event request.
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: The event request has deleted.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /events:
+    get:
+      description: Queries events based on the conditions.
+      operationId: queryEvents
+      produces:
+         - application/json
+      parameters:
+        - name: category
+          in: query
+          description: The category(ies) of the events to be fetched.
+          required: false
+          type: array
+          items:
+            type: string
+        - name: region
+          in: query
+          description: The region of the events to be fecthed.
+          required: false
+          type: array
+          items:
+            type: string
+        - name: locationGeo
+          in: query
+          description: If provided, the returned events will be sorted based on the location geometry provided by closeness.
+          required: false
+          type: string
+        - name: startTime
+          in: query
+          description: Returns events that startTime is after the provided startTime.
+          required: false
+          type: string
+          format: date-time
+        - name: endTime
+          in: query
+          description: Returns events that endTime is before the provided endTime.
+          required: false
+          type: string
+          format: date-time
+        - name: minMemberCount
+          in: query
+          description: Returns the events that memberCount is greater than minMemberCount.
+          required: false
+          type: integer
+          format: int64
+        - name: maxMemberCount
+          in: query
+          description: Returns the events that memberCount is less than maxMemberCount.
+          required: false
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Returns the list of events based on the query conditions.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /auth/signup:
+    post:
+      description: Sign up a new user.
+      operationId: signUp
+      produces:
+        - application/json
+      parameters:
+        - name: authUser
+          in: body
+          description: The new user to be signed up.
+          required: true
+          schema:
+            $ref: '#/definitions/authUser'
+      responses:
+        '200':
+          description: Returns the userId of the new user.
+          schema:
+            type: integer
+            format: int64
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+  /auth/login:
+    post:
+      description: Login.
+      operationId: login
+      produces:
+        - application/json
+      parameters:
+        - name: authUser
+          in: body
+          description: The new user to be signed up.
+          required: true
+          schema:
+            $ref: '#/definitions/authUser'
+      responses:
+        '200':
+          description: The new use has signed up.
+        default:
+          description: unexpected error.
+          schema:
+            $ref: '#/definitions/errorModel'
+definitions:
+  user:
+    type: object
+    required:
+      - id
+      - firstName
+      - lastName
+      - email
+      - dob
+      - gender
+    properties:
+      id:
+        type: integer
+        format: int64
+      firstName:
+        type: string
+      lastName:
+        type: string
+      photoUrl:
+        type: string
+        format: url
+      region:
+        type: string
+      email:
+        type: string
+      locationGeo:
+        type: string
+      dob:
+        type: string
+        format: date-time
+      gender:
+        type: string
+        enum: ['M', 'F']
+      description:
+        type: string
+  authUser:
+    type: object
+    required:
+      - email
+      - saltedPassword
+      - salt
+      - userId
+    properties:
+      email:
+        type: string
+      saltedPassword:
+        type: string
+        format: password
+      salt:
+        type: string
+      userId:
+        type: integer
+        format: int64
+  event:
+    type: object
+    required:
+      - id
+      - title
+      - category
+      - memberCount
+      - startTime
+      - endTime
+    properties:
+      id:
+        type: integer
+        format: int64
+      title:
+        type: string
+      category:
+        type: string
+        enum: ["study", "eat", "outdoor", "game", "party", "sports", "other"]
+      memberCount:
+        type: integer
+        format: int64
+      locationGeo:
+        type: string
+      locationText:
+        type: string
+      region:
+        type: string
+      startTime:
+        type: string
+        format: date-time
+      endTime:
+        type: string
+        format: date-time
+      photoUrl:
+        type: string
+      description:
+        type: string
+      requirement:
+        type: string
+  eventRequest:
+    type: object
+    required:
+      - id
+      - eventId
+      - userId
+      - type
+      - createdTime
+    properties:
+      id:
+        type: integer
+        format: int64
+      eventId:
+        type: integer
+        format: int64
+      userId:
+        type: integer
+        format: int64
+      type:
+        type: string
+        enum: ['pending', 'accepted', 'rejected']
+      createdTime:
+        type: string
+        format: date-time
+      comment:
+        type: string
+      resopnse:
+        type: string
+  errorModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
