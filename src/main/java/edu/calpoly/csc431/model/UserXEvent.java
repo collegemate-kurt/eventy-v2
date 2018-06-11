@@ -1,34 +1,47 @@
 package edu.calpoly.csc431.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author Eric Jiang
  */
 @Entity
 @Table(name = "UserXEvent")
-public class UserXEvent {
-    @Column
-    private String userId;
+public class UserXEvent implements Serializable {
+    private static final long serialVersionUID = -8209429971406939627L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     @Column
-    private String eventId;
+    private int userId;
 
-    public String getUserId() {
+    @Column
+    private int eventId;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public String getEventId() {
+    public int getEventId() {
         return eventId;
     }
 
-    public void setEventId(String eventId) {
+    public void setEventId(int eventId) {
         this.eventId = eventId;
     }
 }

@@ -13,7 +13,6 @@
 		<h1>Employee List</h1>
 		
 		<table border="1">
-
 			<th>Name</th>
 			<th>Email</th>
 			<th>Address</th>
@@ -22,7 +21,6 @@
 
 			<c:forEach var="employee" items="${listEmployee}">
 				<tr>
-
 					<td>${employee.name}</td>
 					<td>${employee.email}</td>
 					<td>${employee.address}</td>
@@ -30,7 +28,6 @@
 					<td><a href="editEmployee?id=${employee.id}">Edit</a>
 						&nbsp;&nbsp;&nbsp;&nbsp; <a
 						href="deleteEmployee?id=${employee.id}">Delete</a></td>
-
 				</tr>
 			</c:forEach>
 		</table>

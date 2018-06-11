@@ -11,14 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.List;
 
 @Controller
 public class EmployeeController {
-
-	private static final Logger logger = Logger
-			.getLogger(EmployeeController.class);
+	private static final Logger logger = Logger.getLogger(EmployeeController.class);
 
 	public EmployeeController() {
 		System.out.println("EmployeeController()");
@@ -28,7 +25,7 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 
 	@RequestMapping(value = "/")
-	public ModelAndView listEmployee(ModelAndView model) throws IOException {
+	public ModelAndView listEmployee(ModelAndView model) {
 		List<Employee> listEmployee = employeeService.getAllEmployees();
 		model.addObject("listEmployee", listEmployee);
 		model.setViewName("home");
@@ -67,7 +64,6 @@ public class EmployeeController {
 		Employee employee = employeeService.getEmployee(employeeId);
 		ModelAndView model = new ModelAndView("EmployeeForm");
 		model.addObject("employee", employee);
-
 		return model;
 	}
 

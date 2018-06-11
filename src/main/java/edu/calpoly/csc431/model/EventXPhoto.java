@@ -1,27 +1,41 @@
 package edu.calpoly.csc431.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author Eric Jiang
  */
 @Entity
 @Table(name = "EventXPhoto")
-public class EventXPhoto {
+public class EventXPhoto implements Serializable {
+    private static final long serialVersionUID = -9043848662765656483L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     @Column
-    private String eventId;
+    private int eventId;
 
     @Column
     private String photoUrl;
 
-    public String getEventId() {
+    public int getEventId() {
         return eventId;
     }
 
-    public void setEventId(String eventId) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(table = "Event", name = "id")
+    public void setEventId(int eventId) {
         this.eventId = eventId;
     }
 
@@ -32,4 +46,5 @@ public class EventXPhoto {
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
+
 }

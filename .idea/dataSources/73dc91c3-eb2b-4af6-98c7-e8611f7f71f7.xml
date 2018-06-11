@@ -921,57 +921,58 @@
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
     <table id="231" parent="2" name="AuthUser"/>
-    <table id="232" parent="2" name="Event"/>
-    <table id="233" parent="2" name="EventRequest"/>
-    <table id="234" parent="2" name="EventXPhoto"/>
-    <table id="235" parent="2" name="User"/>
-    <table id="236" parent="2" name="UserXEvent"/>
-    <table id="237" parent="2" name="UserXPhoto"/>
-    <table id="238" parent="2" name="UserXUser"/>
-    <table id="239" parent="7" name="EMP_TBL"/>
-    <column id="240" parent="231" name="email">
+    <table id="232" parent="2" name="EMP_TBL"/>
+    <table id="233" parent="2" name="Event"/>
+    <table id="234" parent="2" name="EventRequest"/>
+    <table id="235" parent="2" name="EventXPhoto"/>
+    <table id="236" parent="2" name="User"/>
+    <table id="237" parent="2" name="UserXEvent"/>
+    <table id="238" parent="2" name="UserXPhoto"/>
+    <table id="239" parent="2" name="UserXUser"/>
+    <table id="240" parent="7" name="EMP_TBL"/>
+    <column id="241" parent="231" name="email">
       <Position>1</Position>
       <DataType>varchar(127)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="241" parent="231" name="saltedPassword">
+    <column id="242" parent="231" name="saltedPassword">
       <Position>2</Position>
       <DataType>varchar(511)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="242" parent="231" name="salt">
+    <column id="243" parent="231" name="salt">
       <Position>3</Position>
       <DataType>varchar(127)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="243" parent="231" name="userId">
+    <column id="244" parent="231" name="userId">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="244" parent="231" name="AuthUser_email_uindex">
+    <index id="245" parent="231" name="AuthUser_email_uindex">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="245" parent="231" name="AuthUser_User_id_fk">
+    <index id="246" parent="231" name="AuthUser_User_id_fk">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="246" parent="231" name="PRIMARY">
+    <key id="247" parent="231" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>email</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="247" parent="231" name="AuthUser_email_uindex">
+    <key id="248" parent="231" name="AuthUser_email_uindex">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>AuthUser_email_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="248" parent="231" name="AuthUser_User_id_fk">
+    <foreign-key id="249" parent="231" name="AuthUser_User_id_fk">
       <ColNames>userId</ColNames>
       <RefSchemaName>eventy</RefSchemaName>
       <RefTableName>User</RefTableName>
@@ -979,154 +980,184 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="249" parent="232" name="id">
+    <column id="250" parent="232" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="251" parent="232" name="address">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="252" parent="232" name="email">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="253" parent="232" name="name">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="254" parent="232" name="telephone">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="255" parent="233" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="250" parent="232" name="title">
+    <column id="256" parent="233" name="title">
       <Position>2</Position>
       <DataType>varchar(127)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="251" parent="232" name="category">
+    <column id="257" parent="233" name="category">
       <Position>3</Position>
       <DataType>enum(&apos;study&apos;, &apos;eat&apos;, &apos;outdoor&apos;, &apos;game&apos;, &apos;party&apos;, &apos;sports&apos;, &apos;volunteer&apos;, &apos;other&apos;)|0e</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="252" parent="232" name="memberCount">
+    <column id="258" parent="233" name="memberCount">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="232" name="locationGeo">
+    <column id="259" parent="233" name="locationGeo">
       <Position>5</Position>
       <DataType>geometry|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="232" name="locationText">
+    <column id="260" parent="233" name="locationText">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="232" name="region">
+    <column id="261" parent="233" name="region">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="232" name="startTime">
+    <column id="262" parent="233" name="startTime">
       <Position>8</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="232" name="endTime">
+    <column id="263" parent="233" name="endTime">
       <Position>9</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="232" name="photoUrl">
+    <column id="264" parent="233" name="photoUrl">
       <Position>10</Position>
       <DataType>varchar(511)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="232" name="description">
+    <column id="265" parent="233" name="description">
       <Position>11</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="232" name="requirement">
+    <column id="266" parent="233" name="requirement">
       <Position>12</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="261" parent="232" name="Event_id_uindex">
+    <column id="267" parent="233" name="requirements">
+      <Position>13</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="268" parent="233" name="Event_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="262" parent="232" name="PRIMARY">
+    <key id="269" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="263" parent="232" name="Event_id_uindex">
+    <key id="270" parent="233" name="Event_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>Event_id_uindex</UnderlyingIndexName>
     </key>
-    <column id="264" parent="233" name="id">
+    <column id="271" parent="234" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="233" name="eventId">
+    <column id="272" parent="234" name="eventId">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="266" parent="233" name="userId">
+    <column id="273" parent="234" name="userId">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="233" name="comment">
+    <column id="274" parent="234" name="comment">
       <Position>4</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="233" name="response">
+    <column id="275" parent="234" name="response">
       <Position>5</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="233" name="createTime">
+    <column id="276" parent="234" name="createTime">
       <Position>6</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="233" name="type">
+    <column id="277" parent="234" name="type">
       <Position>7</Position>
       <DataType>enum(&apos;pending&apos;, &apos;accepted&apos;, &apos;rejected&apos;)|0e</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="271" parent="233" name="EventRequest_id_uindex">
+    <index id="278" parent="234" name="EventRequest_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="272" parent="233" name="EventRequest_Event_id_fk">
+    <index id="279" parent="234" name="EventRequest_Event_id_fk">
       <ColNames>eventId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="273" parent="233" name="EventRequest_User_id_fk">
+    <index id="280" parent="234" name="EventRequest_User_id_fk">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="274" parent="233" name="PRIMARY">
+    <key id="281" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="275" parent="233" name="EventRequest_id_uindex">
+    <key id="282" parent="234" name="EventRequest_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>EventRequest_id_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="276" parent="233" name="EventRequest_Event_id_fk">
+    <foreign-key id="283" parent="234" name="EventRequest_Event_id_fk">
       <ColNames>eventId</ColNames>
       <RefSchemaName>eventy</RefSchemaName>
       <RefTableName>Event</RefTableName>
@@ -1134,7 +1165,7 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="277" parent="233" name="EventRequest_User_id_fk">
+    <foreign-key id="284" parent="234" name="EventRequest_User_id_fk">
       <ColNames>userId</ColNames>
       <RefSchemaName>eventy</RefSchemaName>
       <RefTableName>User</RefTableName>
@@ -1142,23 +1173,44 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="278" parent="234" name="eventId">
+    <column id="285" parent="235" name="id">
       <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="286" parent="235" name="eventId">
+      <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="234" name="photoUrl">
-      <Position>2</Position>
+    <column id="287" parent="235" name="photoUrl">
+      <Position>3</Position>
       <DataType>varchar(511)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="280" parent="234" name="EventXPhoto_Event_id_fk">
+    <index id="288" parent="235" name="EventXPhoto_id_uindex">
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="289" parent="235" name="EventXPhoto_Event_id_fk">
       <ColNames>eventId</ColNames>
       <Type>btree</Type>
     </index>
-    <foreign-key id="281" parent="234" name="EventXPhoto_Event_id_fk">
+    <key id="290" parent="235" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="291" parent="235" name="EventXPhoto_id_uindex">
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>EventXPhoto_id_uindex</UnderlyingIndexName>
+    </key>
+    <foreign-key id="292" parent="235" name="EventXPhoto_Event_id_fk">
       <ColNames>eventId</ColNames>
       <RefSchemaName>eventy</RefSchemaName>
       <RefTableName>Event</RefTableName>
@@ -1166,97 +1218,103 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="282" parent="235" name="id">
+    <column id="293" parent="236" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="235" name="firstName">
+    <column id="294" parent="236" name="firstName">
       <Position>2</Position>
       <DataType>varchar(127)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="235" name="lastName">
+    <column id="295" parent="236" name="lastName">
       <Position>3</Position>
       <DataType>varchar(127)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="235" name="photoUrl">
+    <column id="296" parent="236" name="photoUrl">
       <Position>4</Position>
       <DataType>varchar(511)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="235" name="region">
+    <column id="297" parent="236" name="region">
       <Position>5</Position>
       <DataType>varchar(127)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="235" name="email">
+    <column id="298" parent="236" name="email">
       <Position>6</Position>
       <DataType>varchar(127)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="235" name="locationGeo">
+    <column id="299" parent="236" name="locationGeo">
       <Position>7</Position>
       <DataType>geometry|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="235" name="dob">
+    <column id="300" parent="236" name="dob">
       <Position>8</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="235" name="gender">
+    <column id="301" parent="236" name="gender">
       <Position>9</Position>
       <DataType>enum(&apos;M&apos;, &apos;F&apos;)|0e</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="235" name="description">
+    <column id="302" parent="236" name="description">
       <Position>10</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="292" parent="235" name="User_id_uindex">
+    <index id="303" parent="236" name="User_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="293" parent="235" name="PRIMARY">
+    <key id="304" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="294" parent="235" name="User_id_uindex">
+    <key id="305" parent="236" name="User_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>User_id_uindex</UnderlyingIndexName>
     </key>
-    <column id="295" parent="236" name="userId">
+    <column id="306" parent="237" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="236" name="eventId">
+    <column id="307" parent="237" name="userId">
       <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="308" parent="237" name="eventId">
+      <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="297" parent="236" name="UserXEvent_User_id_fk">
+    <index id="309" parent="237" name="UserXEvent_User_id_fk">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="298" parent="236" name="UserXEvent_Event_id_fk">
+    <index id="310" parent="237" name="UserXEvent_Event_id_fk">
       <ColNames>eventId</ColNames>
       <Type>btree</Type>
     </index>
-    <foreign-key id="299" parent="236" name="UserXEvent_User_id_fk">
+    <foreign-key id="311" parent="237" name="UserXEvent_User_id_fk">
       <ColNames>userId</ColNames>
       <RefSchemaName>eventy</RefSchemaName>
       <RefTableName>User</RefTableName>
@@ -1264,7 +1322,7 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="300" parent="236" name="UserXEvent_Event_id_fk">
+    <foreign-key id="312" parent="237" name="UserXEvent_Event_id_fk">
       <ColNames>eventId</ColNames>
       <RefSchemaName>eventy</RefSchemaName>
       <RefTableName>Event</RefTableName>
@@ -1272,23 +1330,29 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="301" parent="237" name="userId">
+    <column id="313" parent="238" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="237" name="photoUrl">
+    <column id="314" parent="238" name="userId">
       <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="315" parent="238" name="photoUrl">
+      <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="303" parent="237" name="UserXPhoto_User_id_fk">
+    <index id="316" parent="238" name="UserXPhoto_User_id_fk">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <foreign-key id="304" parent="237" name="UserXPhoto_User_id_fk">
+    <foreign-key id="317" parent="238" name="UserXPhoto_User_id_fk">
       <ColNames>userId</ColNames>
       <RefSchemaName>eventy</RefSchemaName>
       <RefTableName>User</RefTableName>
@@ -1296,26 +1360,32 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="305" parent="238" name="userId">
+    <column id="318" parent="239" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="306" parent="238" name="followerId">
-      <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="307" parent="238" name="UserXUser_User_id_fk">
+    <column id="319" parent="239" name="userId">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="320" parent="239" name="followerId">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="321" parent="239" name="UserXUser_User_id_fk">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="308" parent="238" name="UserXUser_User_id_fk_2">
+    <index id="322" parent="239" name="UserXUser_User_id_fk_2">
       <ColNames>followerId</ColNames>
       <Type>btree</Type>
     </index>
-    <foreign-key id="309" parent="238" name="UserXUser_User_id_fk">
+    <foreign-key id="323" parent="239" name="UserXUser_User_id_fk">
       <ColNames>userId</ColNames>
       <RefSchemaName>eventy</RefSchemaName>
       <RefTableName>User</RefTableName>
@@ -1323,7 +1393,7 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="310" parent="238" name="UserXUser_User_id_fk_2">
+    <foreign-key id="324" parent="239" name="UserXUser_User_id_fk_2">
       <ColNames>followerId</ColNames>
       <RefSchemaName>eventy</RefSchemaName>
       <RefTableName>User</RefTableName>
@@ -1331,34 +1401,34 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="311" parent="239" name="id">
+    <column id="325" parent="240" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="312" parent="239" name="address">
+    <column id="326" parent="240" name="address">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="313" parent="239" name="email">
+    <column id="327" parent="240" name="email">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="314" parent="239" name="name">
+    <column id="328" parent="240" name="name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="315" parent="239" name="telephone">
+    <column id="329" parent="240" name="telephone">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="316" parent="239" name="PRIMARY">
+    <key id="330" parent="240" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

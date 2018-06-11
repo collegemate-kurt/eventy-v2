@@ -1,13 +1,16 @@
 package edu.calpoly.csc431.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author Eric Jiang
  */
 @Entity
 @Table(name = "User")
-public class User {
+public class User implements Serializable  {
+    private static final long serialVersionUID = -4036038806071197703L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

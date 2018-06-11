@@ -9,8 +9,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "Event")
 public class Event implements Serializable {
-    // TODO: change serialVersion
-    private static final long serialVersionUID = -3465813074586302847L;
+    private static final long serialVersionUID = -2362311051806054479L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

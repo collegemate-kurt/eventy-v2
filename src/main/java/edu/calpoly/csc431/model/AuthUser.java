@@ -2,15 +2,17 @@ package edu.calpoly.csc431.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "AuthUser")
 public class AuthUser implements Serializable {
-    private static final long serialVersionUID = -3465813074586302847L;
+    private static final long serialVersionUID = -8036141793883300917L;
 
     @Column
+    @Id
     private String email;
 
     @Column
@@ -20,7 +22,7 @@ public class AuthUser implements Serializable {
     private String salt;
 
     @Column
-    private String userId;
+    private int userId;
 
 
     public String getEmail() {
@@ -47,11 +49,11 @@ public class AuthUser implements Serializable {
         this.salt = salt;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 }

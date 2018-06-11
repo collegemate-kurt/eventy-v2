@@ -1,12 +1,11 @@
 package edu.calpoly.csc431.dao;
 
-import java.util.List;
-
+import edu.calpoly.csc431.model.Employee;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.calpoly.csc431.model.Employee;
+import java.util.List;
 
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -21,7 +20,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Employee> getAllEmployees() {
-
 		return sessionFactory.getCurrentSession().createQuery("from Employee")
 				.list();
 	}

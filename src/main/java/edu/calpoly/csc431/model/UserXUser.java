@@ -1,34 +1,48 @@
 package edu.calpoly.csc431.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author Eric Jiang
  */
 @Entity
 @Table(name = "UserXUser")
-public class UserXUser {
-    @Column
-    private String userId;
+public class UserXUser implements Serializable {
+    private static final long serialVersionUID = -2191213659394281840L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     @Column
-    private String followerId;
+    private int userId;
 
-    public String getUserId() {
+    @Column
+    private int followerId;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public String getFollowerId() {
+    public int getFollowerId() {
         return followerId;
     }
 
-    public void setFollowerId(String followerId) {
+    public void setFollowerId(int followerId) {
         this.followerId = followerId;
     }
+
 }

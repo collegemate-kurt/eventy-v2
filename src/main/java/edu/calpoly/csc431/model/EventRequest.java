@@ -1,25 +1,27 @@
 package edu.calpoly.csc431.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author Eric Jiang
  */
 @Entity
 @Table(name = "EventRequest")
-public class EventRequest {
-    // TODO: change serialVersion
-    private static final long serialVersionUID = -3465813074586302847L;
+public class EventRequest implements Serializable {
+
+    private static final long serialVersionUID = -3529545552547437595L;
 
     @Id
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column
-    private String eventId;
+    private int eventId;
 
     @Column
-    private String userId;
+    private int userId;
 
     @Column
     private String comment;
@@ -38,11 +40,11 @@ public class EventRequest {
         this.id = id;
     }
 
-    public void setEventId(String eventId) {
+    public void setEventId(int eventId) {
         this.eventId = eventId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
