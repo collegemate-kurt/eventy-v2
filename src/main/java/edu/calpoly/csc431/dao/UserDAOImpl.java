@@ -1,7 +1,9 @@
 package edu.calpoly.csc431.dao;
 
 import edu.calpoly.csc431.model.User;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.AliasToBeanResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -31,6 +33,20 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User getUser(Integer userId) {
         return (User) sessionFactory.getCurrentSession().get(User.class, userId);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        String sql = "select * from User where email = '" + email + "'";
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createSQLQuery(sql)
+                .setResultTransformer(new AliasToBeanResultTransformer(User.class));
+        List list = query.list();
+        if (list.isEmpty()) {
+            return null;
+        }
+        return (User) list.get(0);
     }
 
     @Override

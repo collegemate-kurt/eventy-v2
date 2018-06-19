@@ -40,13 +40,16 @@ public class Event implements Serializable {
     private String endTime;
 
     @Column
+    private String day;
+
+    @Column
     private String photoUrl;
 
     @Column
     private String description;
 
     @Column
-    private String requirements;
+    private String requirement;
 
 
     public int getId() {
@@ -137,12 +140,19 @@ public class Event implements Serializable {
         this.description = description;
     }
 
-    public String getRequirements() {
-        return requirements;
+    public String getRequirement() {
+        return requirement;
     }
 
-    public void setRequirements(String requirements) {
-        this.requirements = requirements;
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
     }
 
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
 }

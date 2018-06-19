@@ -21,9 +21,8 @@ public class EventXPhotoDAOImpl implements EventXPhotoDAO {
     public List<String> getPhotos(Integer eventId) {
         String sql = "select photoUrl\n" +
                 "from EventXPhoto\n" +
-                "where eventId = :eventId";
-        Query query = sessionFactory.getCurrentSession().createQuery(sql);
-        query.setParameter("eventId", eventId);
+                "where eventId = '" + eventId + "'";
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         return query.list();
     }
 

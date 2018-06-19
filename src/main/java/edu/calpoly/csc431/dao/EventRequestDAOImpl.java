@@ -47,9 +47,8 @@ public class EventRequestDAOImpl implements EventRequestDAO {
     public List<EventRequest> getRequests(Integer eventId) {
         String sql = "select *\n" +
                 "from EventRequest\n" +
-                "where eventId = :eventId";
-        Query query = sessionFactory.getCurrentSession().createQuery(sql);
-        query.setParameter("eventId", eventId);
+                "where eventId = '" + eventId + "'";
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         return query.list();
     }
 

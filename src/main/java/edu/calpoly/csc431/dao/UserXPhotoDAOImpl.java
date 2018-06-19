@@ -38,9 +38,8 @@ public class UserXPhotoDAOImpl implements UserXPhotoDAO {
     public List<String> getPhotos(Integer userId) {
         String sql = "select photoUrl\n" +
                 "from UserXPhoto\n" +
-                "where userId = :userId";
-        Query query = sessionFactory.getCurrentSession().createQuery(sql);
-        query.setParameter("userId", userId);
+                "where userId = '" + userId + "'";
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         return query.list();
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
  * @author Eric Jiang
  */
 public interface UserService {
-    User addUser(User user);
+    User addUser(String email, String firstName, String lastName);
 
     User updateUser(User user);
 

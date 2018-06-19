@@ -14,7 +14,10 @@ public interface UserDAO {
 
     User getUser(Integer userId);
 
+    User getUserByEmail(String email);
+
     User deleteUser(Integer userId);
 
     List<User> getAllUsers();
+
 }

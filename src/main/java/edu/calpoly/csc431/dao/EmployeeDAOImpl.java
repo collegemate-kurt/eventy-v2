@@ -19,8 +19,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Employee> getAllEmployees() {
-		return sessionFactory.getCurrentSession().createQuery("from Employee"
-		).list();
+		return sessionFactory.getCurrentSession().createQuery("from Employee").list();
 	}
 
 	@Override
@@ -34,8 +33,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	public Employee getEmployee(int empid) {
-		return (Employee) sessionFactory.getCurrentSession().get(
-				Employee.class, empid);
+		return (Employee) sessionFactory.getCurrentSession().get(Employee.class, empid);
 	}
 
 	@Override

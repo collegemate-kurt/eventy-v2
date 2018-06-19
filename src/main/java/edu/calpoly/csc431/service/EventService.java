@@ -15,6 +15,8 @@ public interface EventService {
 
     Event getEvent(int eventId);
 
+    Event updateEvent(Event event);
+
     Event deleteEvent(int eventId);
 
     List<User> getMembers(int eventId);

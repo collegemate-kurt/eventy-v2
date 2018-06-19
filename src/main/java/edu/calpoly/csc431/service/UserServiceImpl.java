@@ -29,7 +29,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User addUser(User user) {
+    public User addUser(String email, String firstName, String lastName) {
+        User user = new User();
+        user.setEmail(email);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
         return userDAO.createUser(user);
     }
 

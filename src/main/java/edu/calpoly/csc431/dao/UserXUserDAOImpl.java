@@ -44,10 +44,9 @@ public class UserXUserDAOImpl implements UserXUserDAO {
                 "where id in (\n" +
                 "  select followerId\n" +
                 "  from UserXUser\n" +
-                "  where userId = :userId\n" +
+                "  where userId = '" + userId + "'\n" +
                 ")";
-        Query query = sessionFactory.getCurrentSession().createQuery(sql);
-        query.setParameter("userId", userId);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         return query.list();
     }
 
@@ -59,10 +58,9 @@ public class UserXUserDAOImpl implements UserXUserDAO {
                 "where id in (\n" +
                 "  select userId\n" +
                 "  from UserXUser\n" +
-                "  where followerId = :followerId\n" +
+                "  where followerId = '" + userId + "'\n" +
                 ")";
-        Query query = sessionFactory.getCurrentSession().createQuery(sql);
-        query.setParameter("followerId", userId);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         return query.list();
     }
 

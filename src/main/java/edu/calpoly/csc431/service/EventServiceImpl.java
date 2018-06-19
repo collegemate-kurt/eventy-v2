@@ -42,6 +42,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public Event updateEvent(Event event) {
+        return eventDAO.updateEvent(event);
+    }
+
+    @Override
     @Transactional
     public Event deleteEvent(int eventId) {
         return eventDAO.deleteEvent(eventId);
@@ -114,7 +119,7 @@ public class EventServiceImpl implements EventService {
     @Override
     @Transactional
     public List<Event> queryEvents() {
-        return null;
+        return eventDAO.getEvents();
     }
 
 }

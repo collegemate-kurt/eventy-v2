@@ -12,7 +12,6 @@ import java.util.List;
  */
 @Repository
 public class EventDAOImpl implements EventDAO {
-
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -43,9 +42,11 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Event> getEvents() {
-        // TODO:
-        return null;
+        return sessionFactory.getCurrentSession()
+                .createQuery("from Event")
+                .list();
     }
 
 }

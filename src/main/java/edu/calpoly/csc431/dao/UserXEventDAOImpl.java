@@ -21,30 +21,26 @@ public class UserXEventDAOImpl implements UserXEventDAO {
     @Override
     @SuppressWarnings("unchecked")
     public List<Event> getEvents(Integer userId) {
-        String sql = "select *\n" +
-                "from Event\n" +
+        String sql = "from Event\n" +
                 "where id in (\n" +
                 "  select eventId\n" +
                 "  from UserXEvent\n" +
-                "  where userId = :userId\n" +
+                "  where userId = " + userId + "\n" +
                 ")";
         Query query = sessionFactory.getCurrentSession().createQuery(sql);
-        query.setParameter("userId", userId);
         return query.list();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<User> getMembers(Integer eventId) {
-        String sql = "select *\n" +
-                "from User\n" +
+        String sql = "from User\n" +
                 "where id in (\n" +
                 "  select userId\n" +
                 "  from UserXEvent\n" +
-                "  where eventId = :eventId\n" +
+                "  where eventId = " + eventId + "\n" +
                 ")";
         Query query = sessionFactory.getCurrentSession().createQuery(sql);
-        query.setParameter("eventId", eventId);
         return query.list();
     }
 

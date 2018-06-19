@@ -25,11 +25,11 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/employee")
     public ModelAndView listEmployee(ModelAndView model) {
         List<Employee> listEmployee = employeeService.getAllEmployees();
         model.addObject("listEmployee", listEmployee);
-        model.setViewName("home");
+        model.setViewName("home_old");
         return model;
     }
 

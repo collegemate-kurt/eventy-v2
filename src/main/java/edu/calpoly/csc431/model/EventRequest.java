@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Eric Jiang
  */
 @Entity
-@Table(name = "EventRequestDAO")
+@Table(name = "EventRequest")
 public class EventRequest implements Serializable {
 
     private static final long serialVersionUID = -3529545552547437595L;
